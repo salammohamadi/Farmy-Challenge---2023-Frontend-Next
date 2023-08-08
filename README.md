@@ -5,8 +5,6 @@ Quick coding challenge to spice up our hiring processes.
   - Simply fork the repo and run `yarn install` followed by `yarn run dev`.
 - Data provided through REST API endpoints configured inside Next (see "Data" section for details).
 
-You can **fork this project** or **start your own** with the specified packages. The project doesn't require any additional services, since data is provided by the above localStorage-based solution.
-
 ### Challenge Description:
 **Mel's Kitchen** is a fancy "salad subscription" company. Customers subscribe to a small, medium or large salad every x days, so we know before hand pretty much how many salads we'll need to produce next week, along with how much we can expect to turn over.
 
