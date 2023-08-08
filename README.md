@@ -3,7 +3,8 @@ Quick coding challenge to spice up our hiring processes.
 ### Technical specs:
 - React/Next JS basic app:
   - Simply fork the repo and run `yarn install` followed by `yarn run dev`.
-- Data provided through REST API endpoints configured inside Next (see "Data" section for details).
+  - It's also packed with `react-redux` and `styled-components` for extra functionality (not necessary to use really).
+- Data provided through **REST API endpoints** configured inside Next (see "Data" section for details).
 
 ### Challenge Description:
 **Mel's Kitchen** is a fancy "salad subscription" company. Customers subscribe to a small, medium or large salad every x days, so we know before hand pretty much how many salads we'll need to produce next week, along with how much we can expect to turn over.
@@ -78,7 +79,7 @@ Optionally you may choose to engage in the following extra tasks:
 
 ## Data and REST API
 A simple REST API is provided to retrieve/edit app data, from within this same project (no external services required).
-Upon starting the server, /api endpoints will be available in the localhost:port space.
+Upon starting the server, /api endpoints will be directly available in the localhost:port space.
 
 ### Endpoints
 - Main route: `/api`
