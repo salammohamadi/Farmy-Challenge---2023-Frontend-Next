@@ -18,5 +18,7 @@ export const IngredientsContainer = styled.div`
   .target-value {
     font-size: 1.5rem;
     margin: 0.5rem;
+
+    color: ${props => (props.maxedOut ? 'red' : 'inherit')};
   }
 `;

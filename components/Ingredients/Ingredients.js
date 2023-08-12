@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button } from '../button/Button';
+import { Button } from '../button';
 import { Ingredient } from './Ingredient';
 import { IngredientsContainer } from './IngredientsContainer';
-import { IngredientForm } from '../ingridientForm';
 import { TargetSalad } from '../targetSalad';
 import { IngredientsList } from './IngredientsList';
 
@@ -14,7 +13,7 @@ export const Ingredients = ({
   ingredients,
 }) => {
   return (
-    <IngredientsContainer>
+    <IngredientsContainer maxedOut={maxedOut}>
       <TargetSalad totalCost={totalCost} totalWeight={totalWeight} />
 
       <IngredientsList>
@@ -54,13 +53,6 @@ export const Ingredients = ({
       >
         +
       </Button> */}
-
-      <div>
-        <Button width='25%'>cancel</Button>
-        <Button type='primary' width='25%'>
-          save
-        </Button>
-      </div>
     </IngredientsContainer>
   );
 };

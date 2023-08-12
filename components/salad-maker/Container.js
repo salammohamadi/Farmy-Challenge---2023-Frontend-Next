@@ -1,8 +1,11 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
+  margin: auto 20rem;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
   background-color: var(--bg-color-1);
-  width: 50%;
 
   .form-header {
     display: flex;

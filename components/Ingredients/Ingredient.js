@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { IngredientStyled } from './Ingredient.styles';
-import { Button } from '../button/Button';
+import { Button } from '../button';
 
 export const Ingredient = ({
   name,
