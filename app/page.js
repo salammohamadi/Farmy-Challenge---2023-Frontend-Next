@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import styles from './page.module.css';
+import { Salad } from '@/components/salad';
 
 export default async function Home() {
+  const res = await fetch('http://localhost:3000/api/salads');
+
+  const { ingredients, salads } = await res.json();
+
   return (
     <main className={styles.main}>
-      <header>
-        <nav>
-          <h1>welcome to Farmy</h1>
-          <Link href='/salads'>salads</Link>
-        </nav>
-      </header>
+      {salads.map(item => (
+        <Salad saladData={item} ingredients={ingredients} />
+      ))}
     </main>
   );
 }

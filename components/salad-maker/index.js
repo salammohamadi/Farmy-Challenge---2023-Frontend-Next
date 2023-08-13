@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { Container } from './Container';
-import { Ingredients } from '../Ingredients/Ingredients';
+import { Container } from '../shared/container';
+import { Ingredients } from '../Ingredients';
 import { Button } from '../button';
 import Link from 'next/link';
 
@@ -93,7 +93,7 @@ export const SaladMaker = ({ saladTypes, ingredients }) => {
       <Link href='/'>
         <Button width='25%'>cancel</Button>
       </Link>
-      <Button type='primary' width='25%'>
+      <Button type='primary' width='25%' disabled={totalCost === 0}>
         save
       </Button>
     </Container>

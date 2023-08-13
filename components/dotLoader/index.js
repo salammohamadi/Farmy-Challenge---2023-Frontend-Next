@@ -3,7 +3,9 @@ import { styled } from 'styled-components';
 // credit to https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje#the-dots
 
 export const DotsLoader = styled.div`
-  width: 60px;
+  margin: auto;
+  width: 6rem;
+  height: 100vh;
   aspect-ratio: 4;
   background: radial-gradient(circle closest-side, #000 90%, #0000) 0 /
     calc(100% / 3) 100% space;

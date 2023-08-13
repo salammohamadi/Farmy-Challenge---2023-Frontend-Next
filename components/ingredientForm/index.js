@@ -1,5 +1,4 @@
 import React from 'react';
-import { Ingredient } from '../Ingredients/Ingredient';
 
 export const IngredientForm = () => {
   const [ingredient, setIngredient] = React.useState('');

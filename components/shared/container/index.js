@@ -1,10 +1,9 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
-  margin: auto 20rem;
+  margin: 5rem;
   align-items: center;
   padding: 1rem;
-  min-height: 100vh;
   background-color: var(--bg-color-1);
 
   .form-header {
