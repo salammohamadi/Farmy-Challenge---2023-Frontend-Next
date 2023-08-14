@@ -4,21 +4,21 @@ import { TargetSalad } from '../targetSalad';
 import { IngredientsList } from './IngredientsList';
 
 export const Ingredients = ({
-  maxedOut,
+  maxed,
   dispatch,
   totalCost,
   totalWeight,
   ingredients,
 }) => {
   return (
-    <IngredientsContainer maxedOut={maxedOut}>
+    <IngredientsContainer maxed={maxed}>
       <TargetSalad totalCost={totalCost} totalWeight={totalWeight} />
 
       <IngredientsList>
         {ingredients.map(ing => (
           <Ingredient
             key={ing.id}
-            disabled={maxedOut}
+            disabled={maxed}
             name={ing.name}
             costPerServing={ing.costPerServing}
             weightPerServing={ing.weightPerServing}

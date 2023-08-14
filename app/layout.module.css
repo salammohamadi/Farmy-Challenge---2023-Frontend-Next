@@ -1,0 +1,7 @@
+.main {
+  margin: auto 2rem;
+  padding: 1rem;
+  background-color: var(--bg-color-1);
+  min-height: 100vh;
+  border-radius: 8px;
+}

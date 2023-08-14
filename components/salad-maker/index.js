@@ -84,7 +84,7 @@ export const SaladMaker = ({ saladTypes, ingredients }) => {
         </span>
       </div>
       <Ingredients
-        maxedOut={targetCost <= totalCost || targetWeight <= totalWeight}
+        maxed={targetCost <= totalCost || targetWeight <= totalWeight}
         dispatch={dispatch}
         totalCost={totalCost}
         totalWeight={totalWeight}

@@ -1,6 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import AppNav from '/components/shared/appNav';
+import styles from './layout.module.css';
+import StyledComponentsRegistry from '@/lib/registry';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,8 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <AppNav />
-        {children}
+        <StyledComponentsRegistry>
+          <main className={styles.main}>
+            <AppNav />
+            {children}
+          </main>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
