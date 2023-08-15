@@ -1,7 +1,8 @@
 'use client';
+
 import { SaladStyled } from './Salad.styles';
 
-export const Salad = ({ saladData, ingredients }) => {
+export default function Salad({ saladData, ingredients }) {
   const saladIngredients = ingredients.filter(ing =>
     saladData.ingredients.map(sing => sing.id).includes(ing.id)
   );
@@ -20,4 +21,4 @@ export const Salad = ({ saladData, ingredients }) => {
       </div>
     </SaladStyled>
   );
-};
+}

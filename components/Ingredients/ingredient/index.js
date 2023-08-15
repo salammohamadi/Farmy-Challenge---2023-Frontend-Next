@@ -1,16 +1,16 @@
-import Image from 'next/image';
+import Button from '@/components/button';
 import React from 'react';
 import { IngredientStyled } from './Ingredient.styles';
-import { Button } from '../button';
+import Image from 'next/image';
 
-export const Ingredient = ({
+export default function Ingredient({
   name,
   weightPerServing,
   costPerServing,
   onRemove,
   onDispatch,
   disabled,
-}) => {
+}) {
   const [servings, setServings] = React.useState(0);
 
   return (
@@ -67,4 +67,4 @@ export const Ingredient = ({
       </div>
     </IngredientStyled>
   );
-};
+}

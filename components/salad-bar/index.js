@@ -1,5 +1,6 @@
 'use client';
-import { Salad } from '../salad';
+
+import Salad from '@/components/salad';
 import { Container } from '@/components/shared/container';
 
 export default function SaladBar({ salads, ingredients }) {

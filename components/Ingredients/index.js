@@ -1,7 +1,7 @@
-import { Ingredient } from './Ingredient';
+import TargetSalad from '../targetSalad';
 import { IngredientsContainer } from './IngredientsContainer';
-import { TargetSalad } from '../targetSalad';
 import { IngredientsList } from './IngredientsList';
+import Ingredient from './ingredient';
 
 export const Ingredients = ({
   maxed,

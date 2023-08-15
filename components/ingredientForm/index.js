@@ -1,6 +1,4 @@
-import React from 'react';
-
-export const IngredientForm = () => {
+export default function IngredientForm() {
   const [ingredient, setIngredient] = React.useState('');
 
   return (
@@ -13,4 +11,4 @@ export const IngredientForm = () => {
       />
     </form>
   );
-};
+}

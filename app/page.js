@@ -1,10 +1,5 @@
-import { Salad } from '@/components/salad';
-import SaladBar from '@/components/salad-bar';
+import HomePage from '@/components/homePage';
 
 export default async function Home() {
-  const res = await fetch('http://localhost:3000/api/salads');
-
-  const { ingredients, salads } = await res.json();
-
-  return <>welcome</>;
+  return <HomePage />;
 }

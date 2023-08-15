@@ -1,9 +1,10 @@
 'use client';
+
 import React from 'react';
 import { Container } from '../shared/container';
 import { Ingredients } from '../Ingredients';
-import { Button } from '../button';
 import Link from 'next/link';
+import Button from '../button';
 
 const initialState = {
   totalCost: 0,
@@ -48,7 +49,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const SaladMaker = ({ saladTypes, ingredients }) => {
+export default function SaladMaker({ saladTypes, ingredients }) {
   const [{ saladTitle, saladType, totalCost, totalWeight }, dispatch] =
     React.useReducer(reducer, initialState);
 
@@ -98,4 +99,4 @@ export const SaladMaker = ({ saladTypes, ingredients }) => {
       </Button>
     </Container>
   );
-};
+}

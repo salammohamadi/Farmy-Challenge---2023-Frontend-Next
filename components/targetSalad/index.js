@@ -1,8 +1,8 @@
-import React from 'react';
+import { TargetSaladStyled } from './TargetSalad.styles';
 
-export const TargetSalad = ({ totalCost, totalWeight }) => {
+export default function TargetSalad({ totalCost, totalWeight }) {
   return (
-    <div className='target-total-data'>
+    <TargetSaladStyled>
       <div>
         <span className='target-title'>target cost:</span>
         <span className='target-value'>{totalCost.toFixed(2)}€</span>
@@ -11,6 +11,6 @@ export const TargetSalad = ({ totalCost, totalWeight }) => {
         <span className='target-title'>target weight:</span>
         <span className='target-value'>{totalWeight}g</span>
       </div>
-    </div>
+    </TargetSaladStyled>
   );
-};
+}
