@@ -1,4 +1,4 @@
-import Button from '@/components/button';
+import Button from '@/components/shared/button';
 import React from 'react';
 import { IngredientStyled } from './Ingredient.styles';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ export default function Ingredient({
   weightPerServing,
   costPerServing,
   onRemove,
+  onAdd,
   onDispatch,
   disabled,
 }) {
@@ -24,7 +25,18 @@ export default function Ingredient({
             type='text'
             placeholder='number of servings'
             value={servings}
-            onChange={e => setServings(+e.target.value)}
+            onChange={e => {
+              const newServing = +e.target.value;
+
+              setServings(newServing);
+
+              if (newServing > servings) {
+                onAdd(newServing);
+              } else {
+                onRemove(servings);
+              }
+            }}
+            disabled={disabled}
           />
         </label>
         <Button

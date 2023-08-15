@@ -4,7 +4,7 @@ import React from 'react';
 import { Container } from '../shared/container';
 import { Ingredients } from '../Ingredients';
 import Link from 'next/link';
-import Button from '../button';
+import Button from '../shared/button';
 
 const initialState = {
   totalCost: 0,

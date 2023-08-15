@@ -1,8 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import AppNav from '/components/shared/appNav';
 import styles from './layout.module.css';
 import StyledComponentsRegistry from '@/lib/registry';
+import AppNav from '@/components/shared/appNav';
 
 const inter = Inter({ subsets: ['latin'] });
 

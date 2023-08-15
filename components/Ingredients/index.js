@@ -40,6 +40,15 @@ export const Ingredients = ({
                 },
               })
             }
+            onAdd={servings =>
+              dispatch({
+                type: 'increase',
+                payload: {
+                  costPerServing: ing.costPerServing * servings,
+                  weightPerServing: ing.weightPerServing * servings,
+                },
+              })
+            }
           />
         ))}
       </IngredientsList>
