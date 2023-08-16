@@ -11,7 +11,9 @@ export const ButtonStyled = styled.button`
   border: 1px solid var(--border-color-1);
   border-radius: 4px;
   background-color: ${props =>
-    props.type === 'primary' ? 'var(--bg-color-2)' : 'var(--bg-color-3)'};
+    props.type === 'primary' && !props.disabled
+      ? 'var(--bg-color-2)'
+      : 'var(--bg-color-3)'};
   width: ${props => props.width || '25%'};
   margin: ${props => (props.type === 'primary' ? '0 0.5rem' : '')};
 `;

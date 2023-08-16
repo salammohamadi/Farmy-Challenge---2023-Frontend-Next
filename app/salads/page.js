@@ -1,7 +1,8 @@
 import SaladBar from '@/components/salad-bar';
+import { BASE_URL } from '@/src/constants/baseURL';
 
 export default async function Salads() {
-  const res = await fetch('http://localhost:3000/api/salads', {
+  const res = await fetch(`${BASE_URL}/salads`, {
     cache: 'no-store',
   });
 

@@ -11,8 +11,12 @@ export const Ingredients = ({
   ingredients,
 }) => {
   return (
-    <IngredientsContainer maxed={maxed}>
-      <TargetSalad totalCost={totalCost} totalWeight={totalWeight} />
+    <IngredientsContainer>
+      <TargetSalad
+        totalCost={totalCost}
+        totalWeight={totalWeight}
+        maxed={maxed}
+      />
 
       <IngredientsList>
         {ingredients.map(ing => (
@@ -22,21 +26,14 @@ export const Ingredients = ({
             name={ing.name}
             costPerServing={ing.costPerServing}
             weightPerServing={ing.weightPerServing}
-            onDispatch={type =>
-              dispatch({
-                type,
-                payload: {
-                  costPerServing: ing.costPerServing,
-                  weightPerServing: ing.weightPerServing,
-                },
-              })
-            }
             onRemove={servings =>
               dispatch({
                 type: 'decrease',
                 payload: {
-                  costPerServing: ing.costPerServing * servings,
-                  weightPerServing: ing.weightPerServing * servings,
+                  servings,
+                  ingredientId: ing.id,
+                  costPerServing: ing.costPerServing,
+                  weightPerServing: ing.weightPerServing,
                 },
               })
             }
@@ -44,8 +41,10 @@ export const Ingredients = ({
               dispatch({
                 type: 'increase',
                 payload: {
-                  costPerServing: ing.costPerServing * servings,
-                  weightPerServing: ing.weightPerServing * servings,
+                  servings,
+                  ingredientId: ing.id,
+                  costPerServing: ing.costPerServing,
+                  weightPerServing: ing.weightPerServing,
                 },
               })
             }

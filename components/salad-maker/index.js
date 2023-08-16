@@ -5,18 +5,17 @@ import { Container } from '../shared/container';
 import { Ingredients } from '../Ingredients';
 import Link from 'next/link';
 import Button from '../shared/button';
+import { useRouter } from 'next/navigation';
 
 const initialState = {
   totalCost: 0,
   totalWeight: 0,
   saladTitle: '',
   saladType: 'small',
+  saladIngredients: [],
 };
 
 const reducer = (state, action) => {
-  const servingsCost = action.payload.costPerServing;
-  const servingWeight = action.payload.weightPerServing;
-
   switch (action.type) {
     case 'setTitle':
       return {
@@ -31,17 +30,38 @@ const reducer = (state, action) => {
       };
 
     case 'increase':
-      return {
-        ...state,
-        totalCost: state.totalCost + servingsCost,
-        totalWeight: state.totalWeight + servingWeight,
-      };
-
     case 'decrease':
+      const factor = action.type === 'increase' ? 1 : -1;
+
+      const filteredIngredients = state.saladIngredients.filter(
+        ing => ing.id !== action.payload.ingredientId
+      );
+
+      const changedIngredient = state.saladIngredients.find(
+        ing => ing.id === action.payload.ingredientId
+      );
+
+      const newServings = changedIngredient?.servings
+        ? changedIngredient?.servings + action.payload.servings * factor
+        : action.payload.servings;
+
       return {
         ...state,
-        totalCost: state.totalCost - servingsCost,
-        totalWeight: state.totalWeight - servingWeight,
+        saladIngredients: newServings
+          ? [
+              ...filteredIngredients,
+              {
+                id: action.payload.ingredientId,
+                servings: newServings,
+              },
+            ]
+          : filteredIngredients,
+        totalCost:
+          state.totalCost +
+          action.payload.costPerServing * action.payload.servings * factor,
+        totalWeight:
+          state.totalWeight +
+          action.payload.weightPerServing * action.payload.servings * factor,
       };
 
     default:
@@ -50,10 +70,41 @@ const reducer = (state, action) => {
 };
 
 export default function SaladMaker({ saladTypes, ingredients }) {
-  const [{ saladTitle, saladType, totalCost, totalWeight }, dispatch] =
-    React.useReducer(reducer, initialState);
+  const router = useRouter();
+
+  const [
+    { saladTitle, saladType, totalCost, totalWeight, saladIngredients },
+    dispatch,
+  ] = React.useReducer(reducer, initialState);
 
   const { targetCost, targetWeight } = saladTypes[saladType];
+
+  const maxed = targetCost <= totalCost || targetWeight <= totalWeight;
+
+  const submitHandler = async () => {
+    const requestBody = {
+      totalCost,
+      totalWeight,
+      saladTitle,
+      saladType: 'small',
+      ingredients: saladIngredients,
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}/salads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      console.log({ response });
+    } catch (error) {
+    } finally {
+      router.push('/salads');
+    }
+  };
 
   return (
     <Container>
@@ -85,16 +136,21 @@ export default function SaladMaker({ saladTypes, ingredients }) {
         </span>
       </div>
       <Ingredients
-        maxed={targetCost <= totalCost || targetWeight <= totalWeight}
+        maxed={maxed}
         dispatch={dispatch}
         totalCost={totalCost}
         totalWeight={totalWeight}
         ingredients={ingredients}
       />
-      <Link href='/'>
-        <Button width='25%'>cancel</Button>
-      </Link>
-      <Button type='primary' width='25%' disabled={totalCost === 0}>
+      <Button width='25%' onClick={() => router.push('/')}>
+        cancel
+      </Button>
+      <Button
+        type='primary'
+        width='25%'
+        disabled={maxed || totalWeight === 0}
+        onClick={submitHandler}
+      >
         save
       </Button>
     </Container>

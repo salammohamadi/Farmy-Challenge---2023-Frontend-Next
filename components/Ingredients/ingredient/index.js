@@ -9,7 +9,6 @@ export default function Ingredient({
   costPerServing,
   onRemove,
   onAdd,
-  onDispatch,
   disabled,
 }) {
   const [servings, setServings] = React.useState(0);
@@ -33,7 +32,7 @@ export default function Ingredient({
               if (newServing > servings) {
                 onAdd(newServing);
               } else {
-                onRemove(servings);
+                onRemove(newServing);
               }
             }}
             disabled={disabled}
@@ -43,7 +42,7 @@ export default function Ingredient({
           width='2rem'
           onClick={() => {
             setServings(s => s - 1);
-            onDispatch('decrease');
+            onRemove(1);
           }}
           disabled={servings < 1}
         >
@@ -54,7 +53,7 @@ export default function Ingredient({
           width='2rem'
           onClick={() => {
             setServings(s => s + 1);
-            onDispatch('increase');
+            onAdd(1);
           }}
         >
           +

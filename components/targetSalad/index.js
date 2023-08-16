@@ -1,8 +1,8 @@
 import { TargetSaladStyled } from './TargetSalad.styles';
 
-export default function TargetSalad({ totalCost, totalWeight }) {
+export default function TargetSalad({ totalCost, totalWeight, maxed }) {
   return (
-    <TargetSaladStyled>
+    <TargetSaladStyled maxed={maxed}>
       <div>
         <span className='target-title'>target cost:</span>
         <span className='target-value'>{totalCost.toFixed(2)}€</span>

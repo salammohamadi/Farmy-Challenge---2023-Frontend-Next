@@ -13,6 +13,6 @@ export const TargetSaladStyled = styled.div`
     font-size: 1.5rem;
     margin: 0.5rem;
 
-    color: ${props => (props.maxedout ? 'red' : 'inherit')};
+    color: ${props => (props.maxed ? 'red' : 'inherit')};
   }
 `;
