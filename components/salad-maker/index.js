@@ -3,9 +3,10 @@
 import React from 'react';
 import { Container } from '../shared/container';
 import { Ingredients } from '../Ingredients';
-import Link from 'next/link';
 import Button from '../shared/button';
 import { useRouter } from 'next/navigation';
+import { BASE_URL } from '@/src/constants/baseURL';
+import { DotsLoader } from '../shared/dotLoader';
 
 const initialState = {
   totalCost: 0,
@@ -13,6 +14,7 @@ const initialState = {
   saladTitle: '',
   saladType: 'small',
   saladIngredients: [],
+  submitting: false,
 };
 
 const reducer = (state, action) => {
@@ -64,6 +66,9 @@ const reducer = (state, action) => {
           action.payload.weightPerServing * action.payload.servings * factor,
       };
 
+    case 'submitting':
+      return { ...state, submitting: action.submitting };
+
     default:
       throw Error('unknown action');
   }
@@ -73,7 +78,14 @@ export default function SaladMaker({ saladTypes, ingredients }) {
   const router = useRouter();
 
   const [
-    { saladTitle, saladType, totalCost, totalWeight, saladIngredients },
+    {
+      saladTitle,
+      saladType,
+      totalCost,
+      totalWeight,
+      saladIngredients,
+      submitting,
+    },
     dispatch,
   ] = React.useReducer(reducer, initialState);
 
@@ -86,11 +98,12 @@ export default function SaladMaker({ saladTypes, ingredients }) {
       totalCost,
       totalWeight,
       saladTitle,
-      saladType: 'small',
+      saladType,
       ingredients: saladIngredients,
     };
 
     try {
+      dispatch({ type: 'submitting', payload: true });
       const response = await fetch(`${BASE_URL}/salads`, {
         method: 'POST',
         headers: {
@@ -99,35 +112,45 @@ export default function SaladMaker({ saladTypes, ingredients }) {
         body: JSON.stringify(requestBody),
       });
 
+      if (response.ok) {
+        router.push('/salads');
+      }
       console.log({ response });
     } catch (error) {
+      console.log(error);
     } finally {
-      router.push('/salads');
+      dispatch({ type: 'submitting', payload: false });
     }
   };
 
   return (
     <Container>
-      <div className='form-header'>
-        <input
-          type='text'
-          placeholder='salad name'
-          value={saladTitle}
-          onChange={e =>
-            dispatch({ type: 'setTitle', payload: e.target.value })
-          }
-          className='title'
-        />
-        <select
-          value={saladType}
-          onChange={e => dispatch({ type: 'setType', payload: e.target.value })}
-          className='salad-type'
-        >
-          <option value='large'>large</option>
-          <option value='medium'>medium</option>
-          <option value='small'>small</option>
-        </select>
-      </div>
+      {submitting ? (
+        'submitting'
+      ) : (
+        <div className='form-header'>
+          <input
+            type='text'
+            placeholder='salad name'
+            value={saladTitle}
+            onChange={e =>
+              dispatch({ type: 'setTitle', payload: e.target.value })
+            }
+            className='title'
+          />
+          <select
+            value={saladType}
+            onChange={e =>
+              dispatch({ type: 'setType', payload: e.target.value })
+            }
+            className='salad-type'
+          >
+            <option value='large'>large</option>
+            <option value='medium'>medium</option>
+            <option value='small'>small</option>
+          </select>
+        </div>
+      )}
       <hr />
       <div>
         <span>target cost / weight:</span>

@@ -343,6 +343,19 @@
 			"targetStock": 20,
 			"currentStock": 0,
 			"price": 0.33
+		},
+		{
+			"id": 2,
+			"totalCost": 0.3,
+			"totalWeight": 100,
+			"saladTitle": "",
+			"saladType": "small",
+			"ingredients": [
+				{
+					"id": 1,
+					"servings": 1
+				}
+			]
 		}
 	],
 	"subscriptions": [
@@ -2319,6 +2332,19 @@
 				"targetStock": 20,
 				"currentStock": 0,
 				"price": 0.33
+			},
+			{
+				"id": 2,
+				"totalCost": 0.3,
+				"totalWeight": 100,
+				"saladTitle": "",
+				"saladType": "small",
+				"ingredients": [
+					{
+						"id": 1,
+						"servings": 1
+					}
+				]
 			}
 		],
 		"subscriptions": [

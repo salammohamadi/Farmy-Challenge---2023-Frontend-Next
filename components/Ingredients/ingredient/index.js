@@ -39,7 +39,7 @@ export default function Ingredient({
           />
         </label>
         <Button
-          width='2rem'
+          width='3rem'
           onClick={() => {
             setServings(s => s - 1);
             onRemove(1);
@@ -50,7 +50,7 @@ export default function Ingredient({
         </Button>
         <Button
           disabled={disabled}
-          width='2rem'
+          width='3rem'
           onClick={() => {
             setServings(s => s + 1);
             onAdd(1);
